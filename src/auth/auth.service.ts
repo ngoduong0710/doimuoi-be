@@ -63,7 +63,11 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials')
     }
 
-    const payload = { sub: user.id, fullname: user.get('fullname'), avatarUrl: user.avatarUrl }
+    const payload = {
+      sub: user.id,
+      fullname: user.get('fullname'),
+      avatarUrl: user.avatarUrl,
+    }
     const token = this.jwtService.sign(payload)
 
     return {
@@ -74,7 +78,7 @@ export class AuthService {
   }
 
   async validateUser(userId: string): Promise<User> {
-    const user = await this.userModel.findById(userId)
+    const user = await this.userModel.findOne({ id: userId })
     if (!user) {
       throw new UnauthorizedException('User not found')
     }
