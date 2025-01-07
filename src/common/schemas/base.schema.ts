@@ -8,7 +8,7 @@ export const schemaOptions: SchemaOptions = {
     transform: (_, ret) => {
       const { _id, __v, ...rest } = ret
       return rest
-    }
+    },
   },
 }
 

@@ -1,56 +1,51 @@
-import {
-  IsArray,
-  IsOptional,
-  IsUrl,
-  MaxLength,
-  Min
-} from 'class-validator';
+import { IsArray, IsOptional, IsUrl, MaxLength, Min } from 'class-validator'
 
 export class PaymentItemDto {
-  name: string;
+  name: string
 
   @Min(1)
-  quantity: number;
+  quantity: number
 
   @Min(0)
-  price: number;
+  price: number
 }
 
 export class CreatePaymentDto {
-  orderCode: number;
+  orderCode: number
 
   @Min(0)
-  amount: number;
+  amount: number
 
   @MaxLength(255, {
-    message: 'Description must not exceed 9 characters for non-payOS linked bank accounts'
+    message:
+      'Description must not exceed 9 characters for non-payOS linked bank accounts',
   })
-  description: string;
+  description: string
 
   @IsOptional()
-  buyerName?: string;
+  buyerName?: string
 
   @IsOptional()
-  buyerEmail?: string;
+  buyerEmail?: string
 
   @IsOptional()
-  buyerPhone?: string;
+  buyerPhone?: string
 
   @IsOptional()
-  buyerAddress?: string;
+  buyerAddress?: string
 
   @IsOptional()
   @IsArray()
-  items?: PaymentItemDto[];
+  items?: PaymentItemDto[]
 
   @IsUrl()
-  cancelUrl: string;
+  cancelUrl: string
 
   @IsUrl()
-  returnUrl: string;
+  returnUrl: string
 
   @IsOptional()
-  expiredAt?: number;
+  expiredAt?: number
 
-  signature: string;
+  signature: string
 }

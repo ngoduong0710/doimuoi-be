@@ -1,12 +1,13 @@
+import { AppController } from '@/app.controller'
+import { AppService } from '@/app.service'
+import { AuthController } from '@/auth/auth.controller'
+import { AuthModule } from '@/auth/auth.module'
+import { EmailModule } from '@/email/email.module'
+import { PaymentModule } from '@/modules/payment/payment.module'
+import { UsersModule } from '@/modules/users/users.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { AuthController } from './auth/auth.controller'
-import { AuthModule } from './auth/auth.module'
-import { PaymentModule } from './modules/payment/payment.module'
-import { UsersModule } from './modules/users/users.module'
 
 @Module({
   imports: [
@@ -18,7 +19,9 @@ import { UsersModule } from './modules/users/users.module'
       }),
       inject: [ConfigService],
     }),
+
     AuthModule,
+    EmailModule,
     UsersModule,
     PaymentModule,
   ],
