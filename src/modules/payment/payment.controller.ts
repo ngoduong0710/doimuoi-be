@@ -11,8 +11,6 @@ export class PaymentController {
   @Post('create-payment-link')
   @Redirect()
   async createPaymentLink(@Body() createPaymentDto: CreatePaymentDto) {
-    const paymentLinkResponse =
-      await this.paymentService.createPaymentLink(createPaymentDto)
-    return { url: paymentLinkResponse.checkoutUrl }
+    return await this.paymentService.createPaymentLink(createPaymentDto)
   }
 }
