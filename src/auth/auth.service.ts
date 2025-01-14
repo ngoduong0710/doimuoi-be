@@ -103,6 +103,38 @@ export class AuthService {
     return user
   }
 
+  async findOrCreateGoogleUser(googleUser: {
+    email: string
+    firstName: string
+    lastName: string
+    avatarUrl: string
+  }) {
+    let user = await this.userModel.findOne({ email: googleUser.email })
+
+    if (!user) {
+      user = new this.userModel({
+        email: googleUser.email,
+        firstName: googleUser.firstName,
+        lastName: googleUser.lastName,
+        avatarUrl: googleUser.avatarUrl,
+        provider: 'google',
+      })
+      await user.save()
+    }
+
+    return user
+  }
+
+  async createGoogleToken(user: User) {
+    const payload = {
+      sub: user.id.toString(),
+      email: user.email,
+    }
+    return {
+      access_token: this.jwtService.sign(payload),
+    }
+  }
+
   async forgotPassword(email: string): Promise<void> {
     const user = await this.userModel.findOne({ email: email })
     if (!user) {

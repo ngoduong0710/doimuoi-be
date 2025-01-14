@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsEnum,
   IsOptional,
   IsString,
   Matches,
@@ -19,6 +20,7 @@ export class CreateUserDto {
         'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character',
     }
   )
+  @IsOptional()
   password: string
 
   @IsString()
@@ -38,4 +40,9 @@ export class CreateUserDto {
   @IsOptional()
   @IsString()
   avatarUrl?: string
+
+  @IsEnum(['local', 'google'], {
+    message: 'Provider must be either local or google',
+  })
+  provider: 'local' | 'google'
 }

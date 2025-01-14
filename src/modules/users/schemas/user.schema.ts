@@ -6,8 +6,8 @@ export class User extends BaseSchema {
   @Prop({ required: true, unique: true, trim: true })
   email: string
 
-  @Prop({ required: true })
-  password: string
+  @Prop()
+  password?: string
 
   @Prop({ required: true, trim: true })
   firstName: string
@@ -20,6 +20,9 @@ export class User extends BaseSchema {
 
   @Prop()
   avatarUrl?: string
+
+  @Prop({ required: true, enum: ['local', 'google'], default: 'local' })
+  provider: string
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`
