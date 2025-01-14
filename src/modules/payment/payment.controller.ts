@@ -9,7 +9,6 @@ export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
   @Post('create-payment-link')
-  @Redirect()
   async createPaymentLink(@Body() createPaymentDto: CreatePaymentDto) {
     return await this.paymentService.createPaymentLink(createPaymentDto)
   }
