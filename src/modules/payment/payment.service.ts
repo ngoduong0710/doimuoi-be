@@ -7,15 +7,15 @@ export class PaymentService {
   private domain: string
 
   constructor(private configService: ConfigService) {
-    this.domain = this.configService.get<string>('DOMAIN')
+    this.domain = this.configService.get('DOMAIN')
   }
 
   async createPaymentLink(createPaymentDto: CreatePaymentDto) {
     const PayOS = require('@payos/node')
     const payOS = new PayOS(
-      this.configService.get<string>('PAYOS_CLIENT_ID'),
-      this.configService.get<string>('PAYOS_API_KEY'),
-      this.configService.get<string>('PAYOS_CHECKSUM_KEY')
+      this.configService.get('PAYOS_CLIENT_ID'),
+      this.configService.get('PAYOS_API_KEY'),
+      this.configService.get('PAYOS_CHECKSUM_KEY')
     )
 
     const paymentData = {

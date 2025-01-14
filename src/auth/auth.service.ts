@@ -77,7 +77,7 @@ export class AuthService {
     return {
       accessToken: token,
       tokenType: 'Bearer',
-      expiresIn: this.configService.get<number>('JWT_EXPIRATION'),
+      expiresIn: this.configService.get('JWT_EXPIRATION'),
     }
   }
 
@@ -91,7 +91,7 @@ export class AuthService {
     return {
       accessToken: this.jwtService.sign(payload),
       tokenType: 'Bearer',
-      expiresIn: this.configService.get<number>('JWT_EXPIRATION'),
+      expiresIn: this.configService.get('JWT_EXPIRATION'),
     }
   }
 
