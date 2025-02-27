@@ -25,14 +25,14 @@ export class User extends BaseSchema {
   provider: string
 
   get fullName(): string {
-    return `${this.firstName} ${this.lastName}`
+    return `${this.lastName} ${this.firstName}`
   }
 }
 
 export const UserSchema = SchemaFactory.createForClass(User)
 
 UserSchema.virtual('fullname').get(function () {
-  return `${this.firstName} ${this.lastName}`
+  return `${this.lastName} ${this.firstName}`
 })
 
 UserSchema.index({ email: 1 }, { unique: true })

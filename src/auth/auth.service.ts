@@ -70,6 +70,8 @@ export class AuthService {
     const payload = {
       sub: user.id,
       fullname: user.get('fullname'),
+      email: user.email,
+      phone: user.phone,
       avatarUrl: user.avatarUrl,
     }
     const token = this.jwtService.sign(payload)
@@ -84,7 +86,8 @@ export class AuthService {
   async handleOAuthLogin(user: User) {
     const payload = {
       sub: user.id,
-      fullname: `${user.firstName} ${user.lastName}`,
+      fullname: `${user.lastName} ${user.firstName}`,
+      email: user.email,
       avatarUrl: user.avatarUrl,
     }
 
