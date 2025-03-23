@@ -1,10 +1,8 @@
-import { JwtAuthGuard } from '@/auth/guards/jwt-auth.guard'
-import { Body, Controller, Post, Redirect, UseGuards } from '@nestjs/common'
+import { Body, Controller, Post } from '@nestjs/common'
 import { CreatePaymentDto } from './dto/create-payment.dto'
 import { PaymentService } from './payment.service'
 
 @Controller('payment')
-@UseGuards(JwtAuthGuard)
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
